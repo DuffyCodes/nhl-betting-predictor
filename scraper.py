@@ -1,6 +1,5 @@
 import pandas as pd
 import mysql.connector
-from datetime import datetime
 import hashlib
 import numpy as np
 

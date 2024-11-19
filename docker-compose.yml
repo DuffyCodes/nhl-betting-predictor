@@ -15,10 +15,28 @@ services:
       - nhl_network
     volumes:
       - mysql_data:/var/lib/mysql
+  
+  nhl_app:
+    build:
+      context: .                                # Build from the current directory
+    container_name: nhl_app
+    environment:
+      DB_HOST: db                               # Matches the service name of MySQL
+      DB_PORT: 3306                             # MySQL port
+      DB_USER: ${MYSQL_USER}                    # MySQL username
+      DB_PASSWORD: ${MYSQL_PASSWORD}            # MySQL password
+      DB_NAME: ${MYSQL_DATABASE}                # MySQL database name
+    ports:
+      - "5000:5000"                             # Exposes the app on port 5000
+    depends_on:
+      - db                                      # Ensures app waits for the database to start
+    networks:
+      - nhl_network                             # Connects to the custom network
 
 networks:
   nhl_network:
-    external: true
+    external: true                              # Custom external network
 
 volumes:
   mysql_data:
+    driver: local                               # Persistent volume for MySQL

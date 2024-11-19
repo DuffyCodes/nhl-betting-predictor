@@ -1,12 +1,6 @@
 import pandas as pd
 import mysql.connector
-
-db_config = {
-    'host': 'localhost',
-    'user': 'nhl_user',
-    'password': 'nhl_password',
-    'database': 'nhl_predictor'
-}
+from config import db_config 
 
 def load_data(table_name):
     connection = mysql.connector.connect(**db_config)
