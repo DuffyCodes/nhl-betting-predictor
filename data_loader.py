@@ -32,3 +32,12 @@ def save_relevant_stats(stats):
     connection.commit()
     cursor.close()
     connection.close()
+    
+def read_relevant_stats():    
+    connection = mysql.connector.connect(**db_config)
+    query = "SELECT stat FROM relevant_stats"
+    df = pd.read_sql(query, connection)
+    connection.close()
+    
+    # Return the 'stat' column as a list of feature names
+    return df['stat'].tolist()
