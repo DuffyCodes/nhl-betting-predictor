@@ -5,7 +5,7 @@ FROM python:3.9-slim
 WORKDIR /app
 
 # Install dependencies
-RUN pip install mysql-connector-python pandas scikit-learn xgboost python-dotenv
+RUN pip install mysql-connector-python pandas scikit-learn xgboost python-dotenv BeautifulSoup matplotlib seaborn
 
 # Copy all application code to the container
 COPY . /app/
